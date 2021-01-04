@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-struct PhotoOfTheDay: Decodable {
+struct PhotoOfTheDay: Codable {
     let title: String
     let explanation: String
     let url: URL?

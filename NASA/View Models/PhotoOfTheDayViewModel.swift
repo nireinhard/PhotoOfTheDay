@@ -25,29 +25,36 @@ class PhotoOfTheDayViewModel: ObservableObject {
     @Published var image: UIImage = UIImage()
     
     init() {
-        request.runRequest().sink { (completion) in
-            switch completion {
-            case .failure(let error):
-                print("failed at \(error)")
-            case .finished:
-                break
-            }
-        } receiveValue: { (photo) in
-            print(photo)
-            self.photoOfTheDay = photo
-        }.store(in: &subscriptions)
+        self.image = defaultImage
+        
+        if let publisher = request.runRequest() {
+            publisher.sink { (completion) in
+                switch completion {
+                case .failure(let error):
+                    print("failed at \(error)")
+                case .finished:
+                    break
+                }
+            } receiveValue: { (photo) in
+                print(photo)
+                self.photoOfTheDay = photo
+            }.store(in: &subscriptions)
+        }
     }
     
     private func fetchImage(url: URL) {
-        ResourceRequest(url: url, defaultResource: defaultImage).runRequest().sink { (completion) in
-            switch completion {
-            case .failure(let error):
-                print("failed at \(error)")
-            case .finished:
-                break
-            }
-        } receiveValue: { (image) in
-            self.image = image
-        }.store(in: &subscriptions)
+        
+        
+        
+//        ResourceRequest(url: url, defaultResource: <#ResourceRequest.ResponseType#>).runRequest()!.sink { (completion) in
+//            switch completion {
+//            case .failure(let error):
+//                print("failed at \(error)")
+//            case .finished:
+//                break
+//            }
+//        } receiveValue: { (imageWrapper) in
+//            self.image = imageWrapper.image
+//        }.store(in: &subscriptions)
     }
 }

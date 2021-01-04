@@ -3,21 +3,17 @@ import Combine
 import UIKit
 
 protocol Requestable {
-    associatedtype ResponseType
+    associatedtype ResponseType: Codable
     var url: URL? { get set }
-    func runRequest() -> AnyPublisher<ResponseType, Error>
+    var defaultResource: ResponseType? { get set }
+    func runRequest() -> AnyPublisher<ResponseType, Error>?
 }
 
-class NetworkingManager {
-    
-    static var baseURL: URL? = {
-        guard let url = URL(string: API.base) else { return nil }
-        let pathVariableKey = "api_key"
-        let constructedURL = url.withQuery(query: [pathVariableKey : API.key])
-        return constructedURL
-    }()
-     
-    static func runRequest<T: Decodable>(url: URL, result: T.Type) -> AnyPublisher<T, Error> {
+extension Requestable {
+    func runRequest() -> AnyPublisher<ResponseType, Error>? {
+        guard let url = url else {
+            return nil
+        }
         return URLSession.shared.dataTaskPublisher(for: url)
             .receive(on: RunLoop.main)
             .tryMap() { (element) in
@@ -28,11 +24,20 @@ class NetworkingManager {
                 }
                 return element.data
             }
-            .decode(type: T.self, decoder: JSONDecoder())
+            .decode(type: ResponseType.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
-    
-    static func runImageRequest(url: URL) -> AnyPublisher<UIImage, Error> {
+}
+
+extension Requestable where ResponseType == ImageWrapper {
+    mutating func runImageRequest(url: URL) -> AnyPublisher<ImageWrapper, Error> {
+        
+        guard let defaultResource = defaultResource else {
+            return Just(ImageWrapper(image: UIImage()))
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        
          return URLSession.shared.dataTaskPublisher(for: url)
             .tryMap() { (element) in
                 guard let res = element.response as? HTTPURLResponse,
@@ -40,10 +45,18 @@ class NetworkingManager {
                       res.statusCode == 200 else {
                     throw URLError(.badServerResponse)
                 }
-                return  UIImage(data: element.data)
+                return ImageWrapper(image: UIImage(data: element.data) ?? defaultResource.image)
             }
-            .replaceNil(with: UIImage())
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+}
+
+class NetworkingManager {
+    static var baseURL: URL? = {
+        guard let url = URL(string: API.base) else { return nil }
+        let pathVariableKey = "api_key"
+        let constructedURL = url.withQuery(query: [pathVariableKey : API.key])
+        return constructedURL
+    }()
 }

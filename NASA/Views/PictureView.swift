@@ -5,9 +5,11 @@ struct PictureView: View {
     @ObservedObject var viewModel = PhotoOfTheDayViewModel()
 
     var body: some View {
-        VStack {
-            Text(viewModel.photoOfTheDay.title)
+        ZStack {
             Image(uiImage: viewModel.image)
+            VStack {
+                Text(viewModel.photoOfTheDay.title)
+            }
         }
     }
 }

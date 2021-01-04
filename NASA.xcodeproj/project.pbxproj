@@ -18,6 +18,7 @@
 		4308DDAB25A2672500EC7F8A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4308DDAA25A2672500EC7F8A /* API.swift */; };
 		4308DDB525A26B7400EC7F8A /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4308DDB425A26B7400EC7F8A /* PictureView.swift */; };
 		4308DDBA25A26CA800EC7F8A /* PhotoOfTheDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4308DDB925A26CA800EC7F8A /* PhotoOfTheDay.swift */; };
+		430E8C4B25A34FD400A005D5 /* ImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430E8C4A25A34FD400A005D5 /* ImageWrapper.swift */; };
 		43718CDB25A31B2F005A3EA0 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43718CDA25A31B2F005A3EA0 /* Keys.plist */; };
 		43718CE325A3259F005A3EA0 /* ResourceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43718CE225A3259F005A3EA0 /* ResourceRequest.swift */; };
 		43D55B5C25A3136100CC8A82 /* PhotoOfTheDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D55B5B25A3136100CC8A82 /* PhotoOfTheDayViewModel.swift */; };
@@ -59,6 +60,7 @@
 		4308DDAA25A2672500EC7F8A /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		4308DDB425A26B7400EC7F8A /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
 		4308DDB925A26CA800EC7F8A /* PhotoOfTheDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOfTheDay.swift; sourceTree = "<group>"; };
+		430E8C4A25A34FD400A005D5 /* ImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWrapper.swift; sourceTree = "<group>"; };
 		43718CDA25A31B2F005A3EA0 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		43718CE225A3259F005A3EA0 /* ResourceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRequest.swift; sourceTree = "<group>"; };
 		43D55B5B25A3136100CC8A82 /* PhotoOfTheDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOfTheDayViewModel.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				4308DDA525A2661D00EC7F8A /* Helpers.swift */,
+				430E8C4A25A34FD400A005D5 /* ImageWrapper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			files = (
 				4308DDA025A265CF00EC7F8A /* NetworkingManager.swift in Sources */,
 				43718CE325A3259F005A3EA0 /* ResourceRequest.swift in Sources */,
+				430E8C4B25A34FD400A005D5 /* ImageWrapper.swift in Sources */,
 				4308DD7125A2657C00EC7F8A /* ContentView.swift in Sources */,
 				4308DD6F25A2657C00EC7F8A /* NASAApp.swift in Sources */,
 				4308DDBA25A26CA800EC7F8A /* PhotoOfTheDay.swift in Sources */,
