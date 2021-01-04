@@ -12,7 +12,6 @@ class PhotoOfTheDayRequest: Requestable {
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
-        
         return NetworkingManager.runRequest(url: url, result: ResponseType.self)
     }
 }

@@ -7,6 +7,7 @@ struct PictureView: View {
     var body: some View {
         VStack {
             Text(viewModel.photoOfTheDay.title)
+            Image(uiImage: viewModel.image)
         }
     }
 }

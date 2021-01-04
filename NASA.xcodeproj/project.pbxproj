@@ -16,10 +16,10 @@
 		4308DDA025A265CF00EC7F8A /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4308DD9F25A265CF00EC7F8A /* NetworkingManager.swift */; };
 		4308DDA625A2661D00EC7F8A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4308DDA525A2661D00EC7F8A /* Helpers.swift */; };
 		4308DDAB25A2672500EC7F8A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4308DDAA25A2672500EC7F8A /* API.swift */; };
-		4308DDB025A269BB00EC7F8A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4308DDAF25A269BB00EC7F8A /* Logger.swift */; };
 		4308DDB525A26B7400EC7F8A /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4308DDB425A26B7400EC7F8A /* PictureView.swift */; };
 		4308DDBA25A26CA800EC7F8A /* PhotoOfTheDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4308DDB925A26CA800EC7F8A /* PhotoOfTheDay.swift */; };
 		43718CDB25A31B2F005A3EA0 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43718CDA25A31B2F005A3EA0 /* Keys.plist */; };
+		43718CE325A3259F005A3EA0 /* ResourceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43718CE225A3259F005A3EA0 /* ResourceRequest.swift */; };
 		43D55B5C25A3136100CC8A82 /* PhotoOfTheDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D55B5B25A3136100CC8A82 /* PhotoOfTheDayViewModel.swift */; };
 		43D55B6225A3138500CC8A82 /* PhotoOfTheDayRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D55B6125A3138500CC8A82 /* PhotoOfTheDayRequest.swift */; };
 /* End PBXBuildFile section */
@@ -57,10 +57,10 @@
 		4308DD9F25A265CF00EC7F8A /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		4308DDA525A2661D00EC7F8A /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		4308DDAA25A2672500EC7F8A /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		4308DDAF25A269BB00EC7F8A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		4308DDB425A26B7400EC7F8A /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
 		4308DDB925A26CA800EC7F8A /* PhotoOfTheDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOfTheDay.swift; sourceTree = "<group>"; };
 		43718CDA25A31B2F005A3EA0 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		43718CE225A3259F005A3EA0 /* ResourceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRequest.swift; sourceTree = "<group>"; };
 		43D55B5B25A3136100CC8A82 /* PhotoOfTheDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOfTheDayViewModel.swift; sourceTree = "<group>"; };
 		43D55B6125A3138500CC8A82 /* PhotoOfTheDayRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOfTheDayRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,7 +124,6 @@
 				4308DD7225A2657D00EC7F8A /* Assets.xcassets */,
 				4308DD7725A2657D00EC7F8A /* Info.plist */,
 				4308DD7425A2657D00EC7F8A /* Preview Content */,
-				4308DDAF25A269BB00EC7F8A /* Logger.swift */,
 				43718CDA25A31B2F005A3EA0 /* Keys.plist */,
 			);
 			path = NASA;
@@ -201,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				43D55B6125A3138500CC8A82 /* PhotoOfTheDayRequest.swift */,
+				43718CE225A3259F005A3EA0 /* ResourceRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -336,7 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4308DDA025A265CF00EC7F8A /* NetworkingManager.swift in Sources */,
-				4308DDB025A269BB00EC7F8A /* Logger.swift in Sources */,
+				43718CE325A3259F005A3EA0 /* ResourceRequest.swift in Sources */,
 				4308DD7125A2657C00EC7F8A /* ContentView.swift in Sources */,
 				4308DD6F25A2657C00EC7F8A /* NASAApp.swift in Sources */,
 				4308DDBA25A26CA800EC7F8A /* PhotoOfTheDay.swift in Sources */,
