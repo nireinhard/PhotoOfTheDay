@@ -31,7 +31,6 @@ extension Requestable {
 
 extension Requestable where ResponseType == ImageWrapper {
     mutating func runImageRequest(url: URL) -> AnyPublisher<ImageWrapper, Error> {
-        
         guard let defaultResource = defaultResource else {
             return Just(ImageWrapper(image: UIImage()))
                 .setFailureType(to: Error.self)
@@ -50,13 +49,4 @@ extension Requestable where ResponseType == ImageWrapper {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
-}
-
-class NetworkingManager {
-    static var baseURL: URL? = {
-        guard let url = URL(string: API.base) else { return nil }
-        let pathVariableKey = "api_key"
-        let constructedURL = url.withQuery(query: [pathVariableKey : API.key])
-        return constructedURL
-    }()
 }

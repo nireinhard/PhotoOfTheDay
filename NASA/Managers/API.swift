@@ -2,6 +2,13 @@ import Foundation
 
 struct API {
     
+    static var baseURL: URL? = {
+        guard let url = URL(string: API.base) else { return nil }
+        let pathVariableKey = "api_key"
+        let constructedURL = url.withQuery(query: [pathVariableKey : API.key])
+        return constructedURL
+    }()
+    
     private static let keyResourceFileName = "Keys"
     private static let keyResourceFileType = "plist"
     private static let resourceKeyName = "api_secret"
