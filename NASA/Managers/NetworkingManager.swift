@@ -7,15 +7,13 @@ protocol Requestable {
     func runRequest() -> AnyPublisher<ResponseType, Error>
 }
 
-class NetworkingManager: ObservableObject {
+class NetworkingManager {
     
     static var baseURL: URL? = {
         guard let url = URL(string: API.base) else { return nil }
         let constructedURL = url.withQuery(query: ["api_key" : API.key])
         return constructedURL
     }()
-    
-    @Published var photoOfTheDay: PhotoOfTheDay = PhotoOfTheDay()
      
     static func runRequest<T: Decodable>(url: URL, result: T.Type) -> AnyPublisher<T, Error> {
         return URLSession.shared.dataTaskPublisher(for: url)
