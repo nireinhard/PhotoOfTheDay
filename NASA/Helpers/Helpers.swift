@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 extension URL {
     typealias StringDict = [String:String]
@@ -8,5 +8,11 @@ extension URL {
         var components = URLComponents(url: self, resolvingAgainstBaseURL: true)
         components?.queryItems = q.map { URLQueryItem(name: $0, value: $1) }
         return components?.url
+    }
+}
+
+extension UIImage {
+    func imageWrapper() -> ImageWrapper {
+        return ImageWrapper(image: self)
     }
 }

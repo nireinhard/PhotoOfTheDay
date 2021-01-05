@@ -36,7 +36,6 @@ class PhotoOfTheDayViewModel: ObservableObject {
                     break
                 }
             } receiveValue: { (photo) in
-                print(photo)
                 self.photoOfTheDay = photo
             }.store(in: &subscriptions)
         }
@@ -44,17 +43,17 @@ class PhotoOfTheDayViewModel: ObservableObject {
     
     private func fetchImage(url: URL) {
         
+        let publisher = ImageResourceRequest(url: url, defaultResource: defaultImage.imageWrapper()).runImageRequest()
         
-        
-//        ResourceRequest(url: url, defaultResource: <#ResourceRequest.ResponseType#>).runRequest()!.sink { (completion) in
-//            switch completion {
-//            case .failure(let error):
-//                print("failed at \(error)")
-//            case .finished:
-//                break
-//            }
-//        } receiveValue: { (imageWrapper) in
-//            self.image = imageWrapper.image
-//        }.store(in: &subscriptions)
+        publisher.sink { (completion) in
+            switch completion {
+            case .failure(let error):
+                print("failed at \(error)")
+            case .finished:
+                break
+            }
+        } receiveValue: { (imageWrapper) in
+            self.image = imageWrapper.image
+        }.store(in: &subscriptions)
     }
 }

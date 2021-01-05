@@ -15,38 +15,41 @@ extension Requestable {
             return nil
         }
         return URLSession.shared.dataTaskPublisher(for: url)
-            .receive(on: RunLoop.main)
             .tryMap() { (element) in
-                guard let res = element.response as? HTTPURLResponse,
-                      // currently only handle 200 OK Responses
-                      res.statusCode == 200 else {
-                    throw URLError(.badServerResponse)
-                }
+                try handleStatusCode(response: element.response)
                 return element.data
             }
+            .receive(on: RunLoop.main)
             .decode(type: ResponseType.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
 }
 
 extension Requestable where ResponseType == ImageWrapper {
-    mutating func runImageRequest(url: URL) -> AnyPublisher<ImageWrapper, Error> {
-        guard let defaultResource = defaultResource else {
+    func runImageRequest() -> AnyPublisher<ImageWrapper, Error> {
+        guard let defaultResource = defaultResource,
+              let resourceURL = url else {
             return Just(ImageWrapper(image: UIImage()))
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
         
-         return URLSession.shared.dataTaskPublisher(for: url)
+         return URLSession.shared.dataTaskPublisher(for: resourceURL)
             .tryMap() { (element) in
-                guard let res = element.response as? HTTPURLResponse,
-                      // currently only handle 200 OK Responses
-                      res.statusCode == 200 else {
-                    throw URLError(.badServerResponse)
-                }
+                try handleStatusCode(response: element.response)
                 return ImageWrapper(image: UIImage(data: element.data) ?? defaultResource.image)
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
+    }
+}
+
+extension Requestable {
+    private func handleStatusCode(response: URLResponse) throws {
+        guard let res = response as? HTTPURLResponse,
+              // currently only handle 200 OK Responses
+              res.statusCode == 200 else {
+            throw URLError(.badServerResponse)
+        }
     }
 }

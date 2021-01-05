@@ -1,7 +1,8 @@
 import UIKit
 import Combine
 
-class ResourceRequest: Requestable {
+struct ImageResourceRequest: Requestable {
+    // ImageWrapper used because it is easier to conform to Codable
     var defaultResource: ImageWrapper?
     typealias ResponseType = ImageWrapper
     
