@@ -5,12 +5,24 @@ struct PictureView: View {
     @ObservedObject var viewModel = PhotoOfTheDayViewModel()
 
     var body: some View {
-        ZStack {
+        VStack(alignment: .leading) {
             Image(uiImage: viewModel.image)
-            VStack {
-                Text(viewModel.photoOfTheDay.title)
+                .resizable()
+            
+            Text(viewModel.photoOfTheDay.title)
+                .font(.title)
+                .foregroundColor(.primary)
+            HStack {
+                Text(viewModel.photoOfTheDay.url?.absoluteString ?? "")
+                Spacer()
+                Text(viewModel.photoOfTheDay.copyright ?? "")
             }
-        }
+            .font(.subheadline)
+            .foregroundColor(.secondary)
+
+            Divider()
+            Text(viewModel.photoOfTheDay.explanation)
+        }.padding()
     }
 }
 

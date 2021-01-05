@@ -3,15 +3,6 @@ import Combine
 import UIKit
 
 class PhotoOfTheDayViewModel: ObservableObject {
-    private let request = PhotoOfTheDayRequest()
-    private var subscriptions = Set<AnyCancellable>()
-    
-    lazy var defaultImage: UIImage = {
-        guard let defaultImage = UIImage(named: "defaultPhoto") else {
-            return UIImage()
-        }
-        return defaultImage
-    }()
     
     @Published var photoOfTheDay = PhotoOfTheDay() {
         didSet {
@@ -24,9 +15,22 @@ class PhotoOfTheDayViewModel: ObservableObject {
     
     @Published var image: UIImage = UIImage()
     
+    private let request = PhotoOfTheDayRequest()
+    private var subscriptions = Set<AnyCancellable>()
+    
+    private lazy var defaultImage: UIImage = {
+        guard let defaultImage = UIImage(named: "defaultPhoto") else {
+            return UIImage()
+        }
+        return defaultImage
+    }()
+    
     init() {
         self.image = defaultImage
-        
+        getPhotoOfTheDay()
+    }
+    
+    private func getPhotoOfTheDay() {
         if let publisher = request.runRequest() {
             publisher.sink { (completion) in
                 switch completion {
